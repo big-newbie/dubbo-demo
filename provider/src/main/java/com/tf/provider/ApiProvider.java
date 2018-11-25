@@ -27,10 +27,10 @@ public class ApiProvider {
         applicationConfig.setName("A-dubbo-demo");
         applicationConfig.setQosPort(33333);
 
-        RegistryConfig registry = new RegistryConfig();
+        RegistryConfig registry = new RegistryConfig();//注册中心
         registry.setAddress(registryAddr);
 
-        ProtocolConfig protocolConfig = new ProtocolConfig();
+        ProtocolConfig protocolConfig = new ProtocolConfig();//暴露服务
         protocolConfig.setCharset("utf-8");
         protocolConfig.setPort(23124);
         protocolConfig.setName("dubbo");
