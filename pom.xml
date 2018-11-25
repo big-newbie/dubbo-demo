@@ -19,9 +19,9 @@
 
     <dependencies>
         <!--<dependency>-->
-            <!--<groupId>io.netty</groupId>-->
-            <!--<artifactId>netty-all</artifactId>-->
-            <!--<version>4.1.26.Final</version>-->
+        <!--<groupId>io.netty</groupId>-->
+        <!--<artifactId>netty-all</artifactId>-->
+        <!--<version>4.1.26.Final</version>-->
         <!--</dependency>-->
 
         <!-- dubbo start-->

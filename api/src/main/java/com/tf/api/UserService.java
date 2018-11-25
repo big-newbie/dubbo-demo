@@ -5,5 +5,7 @@ package com.tf.api;
  * 2018-11-22
  */
 public interface UserService {
-    String sayHello(String name);
+    String sayHello(String name) throws InterruptedException;
+
+    String serverName() throws InterruptedException;
 }
