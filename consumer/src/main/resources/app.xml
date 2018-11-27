@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:dubbo="http://dubbo.apache.org/schema/dubbo"
@@ -11,14 +11,10 @@
             </list>
         </property>
     </bean>
-    <!-- 提供方应用信息，用于计算依赖关系 -->
-    <dubbo:application name="hello-world-app"/>
 
-    <dubbo:protocol name="dubbo" charset="utf-8" port="12345"/>
+    <dubbo:application name="hello-world-app"/>
 
     <dubbo:registry address="${dubbo.registry.address}" group="dubbo-demo"/>
 
-    <dubbo:service interface="com.tf.api.UserService" ref="userService"/>
-
-    <bean name="userService" class="com.tf.provider.impl.UserServiceImpl"/>
+    <dubbo:reference interface="com.tf.api.UserService" id="userService" check="false"/>
 </beans>

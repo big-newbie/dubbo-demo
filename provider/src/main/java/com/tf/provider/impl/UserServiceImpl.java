@@ -7,8 +7,10 @@ import com.tf.api.UserService;
  * 2018-11-22
  */
 public class UserServiceImpl implements UserService {
-    private final String serverName;
-    private final int delay;
+    private String serverName;
+    private int delay;
+
+    public UserServiceImpl() {}
 
     public UserServiceImpl(String serverName, int delay) {
         this.serverName = serverName;
