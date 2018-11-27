@@ -18,7 +18,10 @@
 
     <dubbo:registry address="${dubbo.registry.address}" group="dubbo-demo"/>
 
-    <dubbo:service interface="com.tf.api.UserService" ref="userService"/>
+    <dubbo:service interface="com.tf.api.UserService" ref="userService" />
 
-    <bean name="userService" class="com.tf.provider.impl.UserServiceImpl"/>
+    <bean name="userService" class="com.tf.provider.impl.UserServiceImpl">
+        <constructor-arg name="delay" value="10"/>
+        <constructor-arg name="serverName" value="server A"/>
+    </bean>
 </beans>

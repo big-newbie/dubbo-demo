@@ -2,6 +2,8 @@ package com.tf.provider.impl;
 
 import com.tf.api.UserService;
 
+import java.util.Random;
+
 /**
  * Created by tingfang
  * 2018-11-22
@@ -23,6 +25,7 @@ public class UserServiceImpl implements UserService {
         String x = "Hello " + name;
         System.out.println(x);
         return x;
+//        throw new IllegalStateException();
     }
 
     @Override
