@@ -18,7 +18,7 @@ public class XmlConsumer {
 //         userService = (UserService) applicationContext.getBean("userService");
         userService = applicationContext.getBean(UserService.class);
         while (true) {
-//            Thread.sleep(500);
+            Thread.sleep(500);
             System.out.println(userService.sayHello(UUID.randomUUID().toString()));
         }
     }

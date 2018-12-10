@@ -16,5 +16,5 @@
 
     <dubbo:registry address="${dubbo.registry.address}" group="dubbo-demo"/>
 
-    <dubbo:reference interface="com.tf.api.UserService" id="userService" cluster="failback" timeout="1"/>
+    <dubbo:reference interface="com.tf.api.UserService" id="userService" cluster="failback" />
 </beans>

@@ -5,10 +5,10 @@ import com.alibaba.dubbo.config.ReferenceConfig;
 import com.alibaba.dubbo.config.RegistryConfig;
 import com.alibaba.dubbo.rpc.cluster.loadbalance.LeastActiveLoadBalance;
 import com.tf.api.UserService;
+import com.tf.utils.PropertyLoader;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Properties;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
@@ -24,18 +24,13 @@ public class ApiConsumer {
      * 4 consistenthash 相同参数请求总是发到同一台机器，默认只有第一个参数参与hash
      */
     public static void main(String[] args) throws Exception {
-        Properties properties = new Properties();
-        String name = "connection.properties";
-//        properties.load(ApiConsumer.class.getResourceAsStream("/connection.properties"));
-        properties.load(ApiConsumer.class.getClassLoader().getResourceAsStream(name));
-        String registryAddr = properties.getProperty("dubbo.registry.address");
 
         ApplicationConfig applicationConfig = new ApplicationConfig();
         applicationConfig.setName("api-consumer");
         applicationConfig.setQosPort(22222);
 
         RegistryConfig registryConfig = new RegistryConfig();
-        registryConfig.setAddress(registryAddr);
+        registryConfig.setAddress(PropertyLoader.getRegistry());
 
         ReferenceConfig<UserService> referenceConfig = new ReferenceConfig<>();
         referenceConfig.setRegistry(registryConfig);
@@ -43,7 +38,7 @@ public class ApiConsumer {
         referenceConfig.setApplication(applicationConfig);
 //        referenceConfig.setLoadbalance( RandomLoadBalance.NAME);
         referenceConfig.setLoadbalance(LeastActiveLoadBalance.NAME);
-        referenceConfig.setVersion("1.0.0");//FIXME 版本号要相同
+//        referenceConfig.setVersion("1.0.0");//FIXME 版本号要相同
         UserService userService = referenceConfig.get();
 
         int count = 50000;

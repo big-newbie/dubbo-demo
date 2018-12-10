@@ -6,6 +6,7 @@ import com.alibaba.dubbo.config.RegistryConfig;
 import com.alibaba.dubbo.config.ServiceConfig;
 import com.tf.api.UserService;
 import com.tf.provider.impl.UserServiceImpl;
+import com.tf.utils.PropertyLoader;
 
 import java.io.IOException;
 import java.util.Properties;
@@ -22,11 +23,6 @@ public class ApiProvider {
     }
 
     private static void export(int qosPort, int protocolPort, String serverName, int weight, int delay) throws IOException {
-        Properties properties = new Properties();
-        String name = "connection.properties";
-//        properties.load(ApiProvider.class.getResourceAsStream("/connection.properties"));
-        properties.load(ApiProvider.class.getClassLoader().getResourceAsStream(name));
-        String registryAddr = properties.getProperty("dubbo.registry.address");
 
         UserService userService = new UserServiceImpl(serverName, delay);
         ApplicationConfig applicationConfig = new ApplicationConfig();
@@ -34,7 +30,7 @@ public class ApiProvider {
         applicationConfig.setQosPort(qosPort);
 
         RegistryConfig registry = new RegistryConfig();//注册中心
-        registry.setAddress(registryAddr);
+        registry.setAddress(PropertyLoader.getRegistry());
 
         ProtocolConfig protocolConfig = new ProtocolConfig();//暴露服务
         protocolConfig.setCharset("utf-8");
@@ -47,7 +43,7 @@ public class ApiProvider {
         serviceConfig.setProtocol(protocolConfig);
         serviceConfig.setApplication(applicationConfig);
         serviceConfig.setRegistry(registry);
-        serviceConfig.setVersion("1.0.0");
+//        serviceConfig.setVersion("1.0.0");
         serviceConfig.setWeight(weight);//权重
         serviceConfig.export();
 
